@@ -13,24 +13,12 @@ class AuthenticationController {
   async authenticate(req, res) {
     const { email, password } = req.body;
 
-
-    db.raw('use vmail')
-      .then(() => {
-        console.log('Database connection is established');
-      })
-      .catch((err) => {
-        console.error('Database connection could not be established', err);
-      });
-    console.log("email", email);
-    console.log("ATTEMPTING AUTHENTICATION!")
-
     // email and password are required
     if (!email || !password)
       return res.status(400).json({ message: "parameters are missing" });
 
     // validate email
     try {
-      console.log("VALIDATING 1")
       await validate(email, emailValidator);
     } catch (validationError) {
       return res.status(422).json({ message: "invalid email" });
@@ -45,13 +33,10 @@ class AuthenticationController {
     }
 
     // check passwords
-    console.log("We are now comparing passwords!")
     const authenticated = Account.comparePasswords(password, account.password);
-    console.log("Result" + authenticated)
     if (!authenticated) {
       return res.status(401).json({ message: `credentials mismatch` });
     }
-    console.log("Generating JWT")
     // generate JWT
     const token = await generateToken({ email });
     res.json({ token, admin: isAdmin(email), id: account.id });
