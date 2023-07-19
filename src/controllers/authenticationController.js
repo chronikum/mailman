@@ -4,7 +4,7 @@ import { promisify } from "util";
 import Account from "../model/account";
 import { generateToken } from "../helpers/tokenHelper";
 import { isAdmin } from "../helpers/authorizationHelper";
-import db from "./db";
+import db from "../db";
 
 const validate = promisify(Joi.validate);
 const emailValidator = Joi.string().email();
