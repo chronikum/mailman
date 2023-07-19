@@ -36,12 +36,13 @@ class AuthenticationController {
     }
 
     // check passwords
+    console.log("We are now comparing passwords!")
     const authenticated = Account.comparePasswords(password, account.password);
-
+    console.log("Result" + authenticated)
     if (!authenticated) {
       return res.status(401).json({ message: `credentials mismatch` });
     }
-
+    console.log("Generating JWT")
     // generate JWT
     const token = await generateToken({ email });
     res.json({ token, admin: isAdmin(email), id: account.id });
