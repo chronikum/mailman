@@ -25,6 +25,7 @@
     "knex": "^2.5.1",
     "lodash": "^4.17.4",
     "morgan": "^1.9.0",
+    "mysql": "^2.18.1",
     "sha512crypt-node": "^0.1.0"
   },
   "devDependencies": {
