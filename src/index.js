@@ -11,6 +11,15 @@ import api from "./api";
 
 import errorMiddleware from "./middlware/errorMiddleware";
 
+
+db.raw('select 1+1 as result')
+  .then(() => {
+    console.log('Database connection is established');
+  })
+  .catch((err) => {
+    console.error('Database connection could not be established', err);
+  });
+
 const app = new Express();
 const port = process.env.PORT || process.env.MAILMAN_PORT || 4000;
 const base = process.env.MAILMAN_BASENAME || "/";

@@ -12,12 +12,16 @@ class AuthenticationController {
   async authenticate(req, res) {
     const { email, password } = req.body;
 
+    console.log("email", email);
+    console("ATTEMPTING AUTHENTICATION!")
+
     // email and password are required
     if (!email || !password)
       return res.status(400).json({ message: "parameters are missing" });
 
     // validate email
     try {
+      console("VALIDATING 1")
       await validate(email, emailValidator);
     } catch (validationError) {
       return res.status(422).json({ message: "invalid email" });
