@@ -13,7 +13,7 @@ class AuthenticationController {
     const { email, password } = req.body;
 
     console.log("email", email);
-    console("ATTEMPTING AUTHENTICATION!")
+    console.log("ATTEMPTING AUTHENTICATION!")
 
     // email and password are required
     if (!email || !password)
@@ -21,7 +21,7 @@ class AuthenticationController {
 
     // validate email
     try {
-      console("VALIDATING 1")
+      console.log("VALIDATING 1")
       await validate(email, emailValidator);
     } catch (validationError) {
       return res.status(422).json({ message: "invalid email" });
