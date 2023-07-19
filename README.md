@@ -3,10 +3,20 @@
 Mailman is a SPA written in React to help you to manage your email server
 database.
 
-![Mailman Screenshot](screenshots/mailman.png)
+> ## Notice
+> 
+> The project was archived by its original developer. 
+>
+> This fork should work for you too :)
+> It works with the most recents versions of NodeJS.
+> I removed support for mariasql and added support for mysql, as the adapter for mariasql is not maintained anymore.   
+> You can use mysql for mariadb though!   
+> If you are using subfolders, please make sure to follow the configuration steps below carefully.
+> Do not skip any steps. I could not get to docker to work, feel free to make a PR where it works.
 
 ## Table of contents
 
+* [Notice](#Notice)
 * [Prerequisites](#prerequisites)
 * [Docker](#docker)
 * [Deployment](#deployment)
@@ -21,8 +31,8 @@ database.
 * [x] create, update and delete domains, accounts, aliases and TLS policies
 * [x] accounts can create aliases and change their passwords
 * [x] responsive web interface
-* [ ] admins per domain
-* [ ] UI customization
+~~* [ ] admins per domain~~
+~~* [ ] UI customization~~
 
 ## Prerequisites
 
