@@ -12,14 +12,6 @@ import api from "./api";
 import errorMiddleware from "./middlware/errorMiddleware";
 
 
-db.raw('select 1+1 as result')
-  .then(() => {
-    console.log('Database connection is established');
-  })
-  .catch((err) => {
-    console.error('Database connection could not be established', err);
-  });
-
 const app = new Express();
 const port = process.env.PORT || process.env.MAILMAN_PORT || 4000;
 const base = process.env.MAILMAN_BASENAME || "/";
@@ -40,6 +32,18 @@ if (base.endsWith("/")) {
 } else {
   app.use(base + "/api", apiLimiter, api);
 }
+
+// setup new route
+app.get(base + "/testConnection", (req, res) => {
+  db.raw('select 1+1 as result')
+    .then(() => {
+      console.log('Database connection is established');
+    })
+    .catch((err) => {
+      console.error('Database connection could not be established', err);
+    });
+  res.send('Hello World!');
+});
 
 if (process.env.NODE_ENV === "production") {
   app.use(base, Express.static(path.resolve("client", "build")));
