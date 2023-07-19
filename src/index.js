@@ -33,18 +33,6 @@ if (base.endsWith("/")) {
   app.use(base + "/api", apiLimiter, api);
 }
 
-// setup new route
-app.get(base + "/testConnection", (req, res) => {
-  db.raw('select 1+1 as result')
-    .then(() => {
-      console.log('Database connection is established');
-    })
-    .catch((err) => {
-      console.error('Database connection could not be established', err);
-    });
-  res.send('Hello World!');
-});
-
 if (process.env.NODE_ENV === "production") {
   app.use(base, Express.static(path.resolve("client", "build")));
   app.use("*", (req, res) => {

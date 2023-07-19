@@ -4,6 +4,7 @@ import { promisify } from "util";
 import Account from "../model/account";
 import { generateToken } from "../helpers/tokenHelper";
 import { isAdmin } from "../helpers/authorizationHelper";
+import db from "./db";
 
 const validate = promisify(Joi.validate);
 const emailValidator = Joi.string().email();
@@ -12,6 +13,14 @@ class AuthenticationController {
   async authenticate(req, res) {
     const { email, password } = req.body;
 
+
+    db.raw('select 1+1 as result')
+      .then(() => {
+        console.log('Database connection is established');
+      })
+      .catch((err) => {
+        console.error('Database connection could not be established', err);
+      });
     console.log("email", email);
     console.log("ATTEMPTING AUTHENTICATION!")
 
