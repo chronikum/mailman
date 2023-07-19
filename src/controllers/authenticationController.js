@@ -14,7 +14,7 @@ class AuthenticationController {
     const { email, password } = req.body;
 
 
-    db.raw('select 1+1 as result')
+    db.raw('use vmail')
       .then(() => {
         console.log('Database connection is established');
       })
